@@ -2,7 +2,7 @@
 
 mapBtc::mapBtc()
 {
-	std::cout << "mapBtc default constructor called\n";
+	//std::cout << "mapBtc default constructor called\n";
 }
 
 mapBtc::mapBtc(const mapBtc &obj)
@@ -27,25 +27,25 @@ mapBtc::~mapBtc()
 	std::cout << "Destructor of mapBtc called\n";
 }
 
-void	mapBtc::fillMap(std::string filePath)
+void	mapBtc::fillMap()
 {
 	std::string tmp;
 	std::string key;
-	float value;
-	std::ifstream file(filePath.c_str());
+	float value = 0;
+	std::ifstream file("data.csv");
 	if (!file.good())
 		throw FileNotExist();
 	std::getline(file, tmp);
 	while (std::getline(file, tmp))
 	{
-		key = tmp.substr(0, tmp.find(' | '));
-		std::stringstream svalue(tmp.substr(tmp.find(' | ') + 1, tmp.size()));
+		key = tmp.substr(0, tmp.find(','));
+		std::stringstream svalue(tmp.substr(tmp.find(',') + 1, tmp.size()));
 		svalue >> value;
 		_map.insert(std::make_pair(key, value));
 	}
 }
 
-void	mapBtc::checkMap()
+/*void	mapBtc::checkMap()
 {
 	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
 	{
@@ -53,11 +53,18 @@ void	mapBtc::checkMap()
 			continue;
 		if ()
 	}
-}
+}*/
 
 void	mapBtc::checkKey(std::string key)
 {
+	
+}
 
+void	mapBtc::checkYears(std::string key)
+{
+	if (key.length() != 4)
+		throw BadFormat();
+	
 }
 
 bool logError(std::string str)
@@ -85,7 +92,7 @@ bool	mapBtc::checkFormat(std::string key)
 	i = 0;
 	while (isdigit(key[i + j]))
 		i++;
-	if (i != 2 || key.size() != j + i)
+	if (i != 2 || (int)key.size() != j + i)
 		return (logError("bad input => " + key));
 	return (true);
 }

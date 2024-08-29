@@ -10,20 +10,27 @@ class mapBtc
 {
 	private:
 		std::map<std::string, float> _map;
-		void	checkKey(std::string key);
 		bool	checkValue();
 		bool	checkFormat(std::string key);
+		void	checkYears(std::string key);
+
 
 	public:
+		void	checkKey(std::string key);
 		mapBtc();
 		mapBtc(const mapBtc &obj);
 		mapBtc &operator=(const mapBtc &obj);
 		~mapBtc();
 
-		void	fillMap(std::string filePath);
+		void	fillMap();
 		void	checkMap();
 
 		class FileNotExist : public std::exception
+		{
+			const char* what() const throw();
+		};
+
+		class NotPositiveNumber : public std::exception
 		{
 			const char* what() const throw();
 		};
