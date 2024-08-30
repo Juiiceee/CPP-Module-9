@@ -57,14 +57,14 @@ void	mapBtc::fillMap()
 
 void	mapBtc::checkKey(std::string key)
 {
-	
+	(void)key;
 }
 
-void	mapBtc::checkYears(std::string key)
+bool	mapBtc::checkYears(std::string key)
 {
-	if (key.length() != 4)
-		throw BadFormat();
-	
+	if (atoi(key.c_str()) > 2024)
+		return (true);
+	return (false);
 }
 
 bool logError(std::string str)
@@ -80,7 +80,7 @@ bool	mapBtc::checkFormat(std::string key)
 
 	while (isdigit(key[i + j]))
 	i++;
-	if (i != 4 || key[j + i++] != '-')
+	if (i != 4 || key[j + i++] != '-' || checkYears(key.substr(0, )))
 		return (logError("bad input => " + key));
 	j += i;
 	i = 0;
@@ -106,4 +106,3 @@ const char* mapBtc::BadFormat::what() const throw()
 {
 	return ("Bad Format\n");
 }
-

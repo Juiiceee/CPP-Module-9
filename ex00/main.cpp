@@ -5,7 +5,13 @@ int main()
 {
 	mapBtc map;
 
-
-	map.fillMap();
+	try
+	{
+		map.fillMap();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+	}
 	map.checkKey("Salut");
 }

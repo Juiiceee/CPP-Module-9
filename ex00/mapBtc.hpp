@@ -12,7 +12,7 @@ class mapBtc
 		std::map<std::string, float> _map;
 		bool	checkValue();
 		bool	checkFormat(std::string key);
-		void	checkYears(std::string key);
+		bool	checkYears(std::string key);
 
 
 	public:
@@ -39,6 +39,5 @@ class mapBtc
 		{
 			const char* what() const throw();
 		};
-
 };
 #endif
