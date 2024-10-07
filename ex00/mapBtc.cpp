@@ -62,9 +62,32 @@ void	mapBtc::checkKey(std::string key)
 
 bool	mapBtc::checkYears(std::string key)
 {
-	if (atoi(key.c_str()) > 2024)
+	if (atoi(key.c_str()) > 2024 || atoi(key.c_str()) < 2009)
 		return (true);
 	return (false);
+}
+
+bool mapBtc::checkMonths(std::string key)
+{
+	if (atoi(key.c_str()) > 12 || atoi(key.c_str()) < 1)
+		return (true);
+	return (false);
+}
+
+bool mapBtc::checkDays(std::string key)
+{
+	if (atoi(key.c_str()) > 31 || atoi(key.c_str()) < 1)
+		return (true);
+	return (false);
+}
+
+bool mapBtc::checkDates(int years, int months, int days)
+{
+	if (months == 2 && days > 28)
+		return (false);
+	if ((months == 4 || months == 6 || months == 9 || months == 11) && days > 30)
+		return (false);
+	return (true);
 }
 
 bool logError(std::string str)
@@ -77,22 +100,30 @@ bool	mapBtc::checkFormat(std::string key)
 {
 	int	i = 0;
 	int	j = 0;
+	int years;
+	int months;
+	int days;
 
 	while (isdigit(key[i + j]))
 	i++;
-	if (i != 4 || key[j + i++] != '-' || checkYears(key.substr(0, )))
+	if (i != 4 || key[j + i++] != '-' || checkYears(key.substr(0, 4)))
 		return (logError("bad input => " + key));
+	years = atoi(key.substr(0, 4).c_str());
 	j += i;
 	i = 0;
 	while (isdigit(key[i + j]))
 		i++;
-	if (i != 2 || key[j + i++] != '-')
+	if (i != 2 || key[j + i++] != '-' || checkMonths(key.substr(j, 2)))
 		return (logError("bad input => " + key));
+	months = atoi(key.substr(j, 2).c_str());
 	j += i;
 	i = 0;
 	while (isdigit(key[i + j]))
 		i++;
-	if (i != 2 || (int)key.size() != j + i)
+	if (i != 2 || (int)key.size() != j + i || checkDays(key.substr(j, 2)))
+		return (logError("bad input => " + key));
+	days = atoi(key.substr(j, 2).c_str());
+	if (!checkDates(years, months, days))
 		return (logError("bad input => " + key));
 	return (true);
 }
