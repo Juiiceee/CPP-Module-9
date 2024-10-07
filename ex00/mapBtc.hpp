@@ -1,5 +1,7 @@
 #ifndef MAPBTC_HPP
 #define MAPBTC_HPP
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <string>
 #include <map>
@@ -11,13 +13,13 @@ class mapBtc
 private:
 	std::map<std::string, float> _map;
 	bool checkValue();
-	bool checkFormat(std::string key);
 	bool checkYears(std::string key);
 	bool checkMonths(std::string key);
 	bool checkDays(std::string key);
 	bool checkDates(int years, int months, int days);
 
 public:
+	bool checkFormat(std::string key);
 	void checkKey(std::string key);
 	mapBtc();
 	mapBtc(const mapBtc &obj);

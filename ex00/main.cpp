@@ -13,5 +13,5 @@ int main()
 	{
 		std::cout << e.what();
 	}
-	map.checkKey("Salut");
+	std::cout << map.checkFormat("2024-12-31");
 }
