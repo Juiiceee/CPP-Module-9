@@ -22,8 +22,8 @@ public:
 	bool checkFormat(std::string key);
 	void checkKey(std::string key);
 	mapBtc();
-	mapBtc(const mapBtc &obj);
-	mapBtc &operator=(const mapBtc &obj);
+	mapBtc(const mapBtc& obj);
+	mapBtc& operator=(const mapBtc& obj);
 	~mapBtc();
 
 	void fillMap();
@@ -31,17 +31,17 @@ public:
 
 	class FileNotExist : public std::exception
 	{
-		const char *what() const throw();
+		const char* what() const throw();
 	};
 
 	class NotPositiveNumber : public std::exception
 	{
-		const char *what() const throw();
+		const char* what() const throw();
 	};
 
 	class BadFormat : public std::exception
 	{
-		const char *what() const throw();
+		const char* what() const throw();
 	};
 };
 #endif

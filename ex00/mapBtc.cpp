@@ -44,15 +44,14 @@ void mapBtc::fillMap()
 	}
 }
 
-/*void	mapBtc::checkMap()
+void	mapBtc::checkMap()
 {
 	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
 	{
 		if (!checkFormat(it->first))
 			continue;
-		if ()
 	}
-}*/
+}
 
 void mapBtc::checkKey(std::string key)
 {
