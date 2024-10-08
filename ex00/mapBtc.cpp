@@ -44,12 +44,21 @@ void mapBtc::fillMap()
 	}
 }
 
-void	mapBtc::checkMap()
+void mapBtc::checkMap()
 {
 	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
 	{
 		if (!checkFormat(it->first))
 			continue;
+	}
+}
+
+void mapBtc::printMap()
+{
+	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
+	{
+		std::cout << std::fixed << std::setprecision(2);
+		std::cout << "Date: " << it->first << " Price: " << it->second << std::endl;
 	}
 }
 

@@ -13,5 +13,6 @@ int main()
 	{
 		std::cout << e.what();
 	}
+	map.printMap();
 	std::cout << map.checkFormat("2024-12-31");
 }

@@ -7,6 +7,7 @@
 #include <map>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
 class mapBtc
 {
@@ -25,7 +26,7 @@ public:
 	mapBtc(const mapBtc& obj);
 	mapBtc& operator=(const mapBtc& obj);
 	~mapBtc();
-
+	void printMap();
 	void fillMap();
 	void checkMap();
 
