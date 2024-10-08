@@ -8,7 +8,7 @@ int main()
 
 	try
 	{
-		rpn.process("1 2 + - 4 6 9 8");
+		std::cout << rpn.process("1 2 * 6 + 9 *") << std::endl;
 	}
 	catch (std::exception &e)
 	{

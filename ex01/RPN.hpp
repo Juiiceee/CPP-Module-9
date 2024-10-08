@@ -3,15 +3,15 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stack>
 
 class RPN
 {
 private:
-	int add(int a, int b);
-	int mult(int a, int b);
-	int div(int a, int b);
-	int sous(int a, int b);
-
+	std::stack<int> _stack;
+	int first;
+	int second;
+	int foundOperator(std::string key);
 public:
 	RPN();
 	RPN(const RPN &obj);
