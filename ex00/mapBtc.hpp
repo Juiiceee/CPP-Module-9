@@ -13,36 +13,38 @@ class mapBtc
 {
 private:
 	std::map<std::string, float> _map;
-	bool checkValue();
 	bool checkYears(std::string key);
 	bool checkMonths(std::string key);
 	bool checkDays(std::string key);
 	bool checkDates(int years, int months, int days);
+	bool checkValue(std::string key);
+	float getPrice(std::string key);
+	bool checkFormat(std::string key);
 
 public:
-	bool checkFormat(std::string key);
-	void checkKey(std::string key);
+	void printPrice(std::string path);
 	mapBtc();
-	mapBtc(const mapBtc& obj);
-	mapBtc& operator=(const mapBtc& obj);
+	mapBtc(const mapBtc &obj);
+	mapBtc &operator=(const mapBtc &obj);
 	~mapBtc();
 	void printMap();
 	void fillMap();
-	void checkMap();
+	std::map<std::string, float> getMap();
 
 	class FileNotExist : public std::exception
 	{
-		const char* what() const throw();
+		const char *what() const throw();
 	};
 
 	class NotPositiveNumber : public std::exception
 	{
-		const char* what() const throw();
+		const char *what() const throw();
 	};
 
 	class BadFormat : public std::exception
 	{
-		const char* what() const throw();
+		const char *what() const throw();
 	};
 };
+bool logError(std::string str);
 #endif

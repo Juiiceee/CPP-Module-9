@@ -1,10 +1,12 @@
 #include <iostream>
 #include "mapBtc.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
 	mapBtc map;
 
+	if (argc != 2)
+		return (logError("Usage: ./a.out input.txt"));
 	try
 	{
 		map.fillMap();
@@ -13,6 +15,5 @@ int main()
 	{
 		std::cout << e.what();
 	}
-	map.printMap();
-	std::cout << map.checkFormat("2024-12-31");
+	map.printPrice(argv[1]);
 }

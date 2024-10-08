@@ -23,7 +23,6 @@ mapBtc &mapBtc::operator=(const mapBtc &obj)
 
 mapBtc::~mapBtc()
 {
-	std::cout << "Destructor of mapBtc called\n";
 }
 
 void mapBtc::fillMap()
@@ -44,15 +43,6 @@ void mapBtc::fillMap()
 	}
 }
 
-void mapBtc::checkMap()
-{
-	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
-	{
-		if (!checkFormat(it->first))
-			continue;
-	}
-}
-
 void mapBtc::printMap()
 {
 	for (std::map<std::string, float>::iterator it = _map.begin(); it != _map.end(); it++)
@@ -62,9 +52,26 @@ void mapBtc::printMap()
 	}
 }
 
-void mapBtc::checkKey(std::string key)
+void mapBtc::printPrice(std::string path)
 {
-	(void)key;
+	std::string tmp;
+	std::string date;
+	float price;
+	float amount;
+	std::ifstream file(path.c_str());
+	if (!file.good())
+		throw FileNotExist();
+	std::getline(file, tmp);
+	while (std::getline(file, tmp))
+	{
+		if (!checkFormat(tmp))
+			continue;
+		date = tmp.substr(0, tmp.find('|') - 1);
+		price = getPrice(date);
+		std::stringstream svalue(tmp.substr(tmp.find('|') + 1, tmp.size()));
+		svalue >> amount;
+		std::cout << date << " => " << amount << " = " << price * amount << std::endl;
+	}
 }
 
 bool mapBtc::checkYears(std::string key)
@@ -86,6 +93,19 @@ bool mapBtc::checkDays(std::string key)
 	if (atoi(key.c_str()) > 31 || atoi(key.c_str()) < 1)
 		return (true);
 	return (false);
+}
+
+float mapBtc::getPrice(std::string key)
+{
+	std::map<std::string, float>::iterator it = _map.lower_bound(key);
+
+	if (it == _map.end() || it->first != key)
+	{
+		if (it == _map.begin())
+			return (0.00);
+		--it;
+	}
+	return (it->second);
 }
 
 bool mapBtc::checkDates(int years, int months, int days)
@@ -113,6 +133,19 @@ bool logError(std::string str)
 	return (false);
 }
 
+bool mapBtc::checkValue(std::string key)
+{
+	float value;
+	std::stringstream svalue(key.substr(key.find('|') + 1, key.size()));
+
+	if (svalue.fail())
+		return (logError("Fail to convert value => " + key));
+	svalue >> value;
+	if (value < 0 || value > 1000)
+		return (logError("Value to small or to big => " + key));
+	return (true);
+}
+
 bool mapBtc::checkFormat(std::string key)
 {
 	int i = 0;
@@ -137,12 +170,19 @@ bool mapBtc::checkFormat(std::string key)
 	i = 0;
 	while (isdigit(key[i + j]))
 		i++;
-	if (i != 2 || (int)key.size() != j + i || checkDays(key.substr(j, 2)))
+	if (i != 2 || key[j + i + 1] != '|' || key[j + i + 2] != ' ' || checkDays(key.substr(j, 2)))
 		return (logError("bad input => " + key));
 	days = atoi(key.substr(j, 2).c_str());
 	if (!checkDates(years, months, days))
 		return (logError("bad input => " + key));
+	if (!checkValue(key))
+		return (false);
 	return (true);
+}
+
+std::map<std::string, float> mapBtc::getMap()
+{
+	return (_map);
 }
 
 const char *mapBtc::FileNotExist::what() const throw()
