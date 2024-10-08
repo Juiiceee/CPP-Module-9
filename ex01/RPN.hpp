@@ -1,16 +1,30 @@
 #ifndef RPN_HPP
-# define RPN_HPP
-# include <iostream>
-# include <string>
+#define RPN_HPP
+#include <iostream>
+#include <string>
+#include <sstream>
 
 class RPN
 {
-	private:
-		
+private:
+	int add(int a, int b);
+	int mult(int a, int b);
+	int div(int a, int b);
+	int sous(int a, int b);
+
+public:
+	RPN();
+	RPN(const RPN &obj);
+	RPN &operator=(const RPN &obj);
+	~RPN();
+	int process(std::string str);
+	class InvalidExpression : public std::exception
+	{
 	public:
-		RPN();
-		RPN(const RPN &obj);
-		RPN &operator=(const RPN &obj);
-		~RPN();
+		virtual const char *what() const throw()
+		{
+			return "Invalid expression";
+		}
+	};
 };
 #endif
