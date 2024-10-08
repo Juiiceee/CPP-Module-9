@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 	mapBtc map;
 
 	if (argc != 2)
-		return (logError("Usage: ./a.out input.txt"));
+		return (logError("Usage: ./btc input.txt"));
 	try
 	{
 		map.fillMap();

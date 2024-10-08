@@ -6,11 +6,11 @@
 #    By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 12:22:14 by lbehr             #+#    #+#              #
-#    Updated: 2024/10/07 14:46:50 by lbehr            ###   ########.fr        #
+#    Updated: 2024/10/08 14:16:51 by lbehr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= a.out
+NAME	:= btc
 OBJ_DIR	:= obj
 SRCS	:= main.cpp mapBtc.cpp
 #ls *.cpp | tr "\n" " " | sed 's/\s$//' | xclip -selection clipboard
