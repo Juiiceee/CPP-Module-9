@@ -1,5 +1,5 @@
-#ifndef MAPBTC_HPP
-#define MAPBTC_HPP
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -32,16 +32,6 @@ public:
 	std::map<std::string, float> getMap();
 
 	class FileNotExist : public std::exception
-	{
-		const char *what() const throw();
-	};
-
-	class NotPositiveNumber : public std::exception
-	{
-		const char *what() const throw();
-	};
-
-	class BadFormat : public std::exception
 	{
 		const char *what() const throw();
 	};

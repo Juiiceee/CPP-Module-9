@@ -1,4 +1,4 @@
-#include "mapBtc.hpp"
+#include "BitcoinExchange.hpp"
 
 mapBtc::mapBtc()
 {
@@ -188,9 +188,4 @@ std::map<std::string, float> mapBtc::getMap()
 const char *mapBtc::FileNotExist::what() const throw()
 {
 	return ("File Not Exist\n");
-}
-
-const char *mapBtc::BadFormat::what() const throw()
-{
-	return ("Bad Format\n");
 }
