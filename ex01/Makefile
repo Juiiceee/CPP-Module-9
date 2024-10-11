@@ -6,11 +6,11 @@
 #    By: lbehr <lbehr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 12:22:14 by lbehr             #+#    #+#              #
-#    Updated: 2024/10/08 15:05:20 by lbehr            ###   ########.fr        #
+#    Updated: 2024/10/11 14:56:15 by lbehr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= a.out
+NAME	:= RPN
 OBJ_DIR	:= obj
 SRCS	:= main.cpp RPN.cpp 
 #ls *.cpp | tr "\n" " " | sed 's/\s$//' | xclip -selection clipboard

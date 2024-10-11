@@ -8,10 +8,11 @@
 class RPN
 {
 private:
-	std::stack<int> _stack;
+	std::stack<int> sta;
 	int first;
 	int second;
-	int foundOperator(std::string key);
+	void foundOperator(std::string key);
+
 public:
 	RPN();
 	RPN(const RPN &obj);
@@ -27,4 +28,5 @@ public:
 		}
 	};
 };
+
 #endif

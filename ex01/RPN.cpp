@@ -2,7 +2,6 @@
 
 RPN::RPN() : first(0), second(0)
 {
-	std::cout << "RPN default constructor called\n";
 }
 
 RPN::RPN(const RPN &obj)
@@ -23,7 +22,6 @@ RPN &RPN::operator=(const RPN &obj)
 
 RPN::~RPN()
 {
-	std::cout << "Destructor of RPN called\n";
 }
 
 bool isOperator(char c)
@@ -31,47 +29,25 @@ bool isOperator(char c)
 	return (c == '+' || c == '-' || c == '*' || c == '/' || isdigit(c));
 }
 
-int add(int a, int b)
+void RPN::foundOperator(std::string key)
 {
-	return (a + b);
-}
-
-int mult(int a, int b)
-{
-	return (a * b);
-}
-
-int divi(int a, int b)
-{
-	return (a / b);
-}
-
-int sous(int a, int b)
-{
-	return (a - b);
-}
-
-int RPN::foundOperator(std::string key)
-{
-	int res = 0;
 	switch (key[0])
 	{
 	case '+':
-		res = add(first, second);
+		sta.push(first + second);
 		break;
 	case '-':
-		res = sous(first, second);
+		sta.push(first - second);
 		break;
 	case '*':
-		res = mult(first, second);
+		sta.push(first * second);
 		break;
 	case '/':
-		res = divi(first, second);
+		sta.push(first / second);
 		break;
 	default:
 		break;
 	}
-	return (res);
 }
 
 int RPN::process(std::string str)
@@ -85,16 +61,16 @@ int RPN::process(std::string str)
 			throw InvalidExpression();
 		tmp = line[0];
 		if (isdigit(line[0]))
-			_stack.push(line[0] - '0');
+			sta.push(line[0] - '0');
 		else
 		{
-			second = _stack.top();
-			_stack.pop();
-			first = _stack.top();
-			_stack.pop();
-			_stack.push(foundOperator(tmp));
+			second = sta.top();
+			sta.pop();
+			first = sta.top();
+			sta.pop();
+			foundOperator(tmp);
 		}
-		return (_stack.top());
 	}
+	return (sta.top());
 	return (0);
 }
