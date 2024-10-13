@@ -25,7 +25,7 @@ public:
 	public:
 		virtual const char *what() const throw()
 		{
-			return "BigNumber";
+			return "Big number or negative number";
 		}
 	};
 
@@ -34,7 +34,7 @@ public:
 	public:
 		virtual const char *what() const throw()
 		{
-			return "Doublon";
+			return "There is a duplicate";
 		}
 	};
 };
