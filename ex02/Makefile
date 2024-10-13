@@ -12,7 +12,7 @@
 
 NAME	:= PmergeMe
 OBJ_DIR	:= obj
-SRCS	:= main.cpp
+SRCS	:= main.cpp PmergeMe.cpp
 #ls *.cpp | tr "\n" " " | sed 's/\s$//' | xclip -selection clipboard
 OBJS	:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS	:= $(OBJS:.o=.d)
