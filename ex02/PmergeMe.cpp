@@ -8,7 +8,7 @@ PmergeMe::PmergeMe(const PmergeMe &obj)
 {
 	std::cout << "Copy constructor called\n";
 	*this = obj;
-	return ;
+	return;
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &obj)
@@ -16,7 +16,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &obj)
 	std::cout << "Copy assignment operator called\n";
 	if (this != &obj)
 	{
-		
 	}
 	return *this;
 }

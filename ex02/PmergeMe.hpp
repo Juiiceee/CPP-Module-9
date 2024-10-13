@@ -10,6 +10,8 @@ class PmergeMe
 {
 private:
 	std::vector<int> vect;
+	long timeVect;
+	long timeList;
 
 public:
 	PmergeMe();
