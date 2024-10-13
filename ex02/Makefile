@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= a.out
+NAME	:= PmergeMe
 OBJ_DIR	:= obj
 SRCS	:= main.cpp
 #ls *.cpp | tr "\n" " " | sed 's/\s$//' | xclip -selection clipboard
