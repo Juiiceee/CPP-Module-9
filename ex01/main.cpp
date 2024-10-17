@@ -11,6 +11,11 @@ int main(int argc, char **argv)
 		std::cerr << "Usage: ./RPN \"1 2 * 2 / 2 * 2 4 - +\"" << std::endl;
 		return (1);
 	}
+	if (argv[1][0] == '\0')
+	{
+		std::cerr << "Empty string" << std::endl;
+		return (1);
+	}
 	try
 	{
 		std::cout << rpn.process(argv[1]) << std::endl;
